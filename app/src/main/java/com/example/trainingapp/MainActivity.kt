@@ -10,6 +10,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.trainingapp.ui.theme.TrainingAppTheme
+import com.example.trainingapp.view.MainView
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,7 +19,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             TrainingAppTheme {
                 Surface(modifier = Modifier.fillMaxSize().padding(top = 50.dp)) {
-                    Navigation()
+                    MainView()
                 }
             }
         }
