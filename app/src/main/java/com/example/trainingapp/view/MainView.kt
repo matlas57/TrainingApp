@@ -2,6 +2,7 @@ package com.example.trainingapp.view
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
@@ -9,6 +10,9 @@ import androidx.compose.material.Icon
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.material.Scaffold
 import androidx.compose.material.ScaffoldState
+import androidx.compose.material.Text
+import androidx.compose.material.TopAppBar
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -70,9 +74,20 @@ fun MainView() {
     }
 
     Scaffold(
-        topBar = {},
+        topBar = {
+            TopAppBar(
+                title = {
+                    Text(
+                        text = title.value
+                    )
+                },
+                contentColor = Color.White,
+                modifier = Modifier.statusBarsPadding()
+            )
+        },
         bottomBar = bottomBar,
-        scaffoldState = scaffoldState
+        scaffoldState = scaffoldState,
+        backgroundColor = MaterialTheme.colorScheme.background
     ) {
         Navigation(
             pd = it
