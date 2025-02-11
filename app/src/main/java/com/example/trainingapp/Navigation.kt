@@ -25,5 +25,8 @@ fun Navigation(
         composable(Screen.BottomScreen.Today.bRoute) {
             TodayView()
         }
+        composable(Screen.AddExercise.route) {
+
+        }
     }
 }

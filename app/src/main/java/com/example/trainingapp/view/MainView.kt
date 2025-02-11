@@ -1,17 +1,21 @@
 package com.example.trainingapp.view
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
+import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Icon
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.material.Scaffold
 import androidx.compose.material.ScaffoldState
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -27,8 +31,10 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.trainingapp.MainViewModel
 import com.example.trainingapp.Navigation
+import com.example.trainingapp.Screen
 import com.example.trainingapp.screensInBottom
 
+@SuppressLint("ResourceAsColor")
 @Composable
 fun MainView() {
     val scaffoldState: ScaffoldState = rememberScaffoldState()
@@ -43,6 +49,8 @@ fun MainView() {
     }
 
     val title = remember { mutableStateOf(currentScreen.title) }
+
+    val dialogOpen = remember { mutableStateOf(false) }
 
     val bottomBar: @Composable () -> Unit = {
         BottomNavigation(
@@ -86,11 +94,23 @@ fun MainView() {
             )
         },
         bottomBar = bottomBar,
+        floatingActionButton = {
+            if (title.value == Screen.BottomScreen.Today.bTitle) {
+                FloatingActionButton(
+                    onClick = { dialogOpen.value = true}, //Open dialog to enter new exercise
+                    contentColor = Color.White,
+                    backgroundColor = Color(0xFF6200EE)
+                ) {
+                    Icon(imageVector = Icons.Default.Add, contentDescription = null)
+                }
+            }
+        },
         scaffoldState = scaffoldState,
         backgroundColor = MaterialTheme.colorScheme.background
     ) {
         Navigation(
             pd = it
         )
+        AddExerciseView(viewModel, dialogOpen)
     }
 }

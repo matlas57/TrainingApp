@@ -24,6 +24,8 @@ sealed class Screen(val title: String, val route: String) {
             R.drawable.baseline_manage_search_24
         )
     }
+
+    object AddExercise: Screen("Add", "add")
 }
 
 val screensInBottom = listOf(
