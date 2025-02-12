@@ -1,5 +1,7 @@
 package com.example.trainingapp.view
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -26,7 +28,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.DialogProperties
 import com.example.trainingapp.MainViewModel
+import com.example.trainingapp.model.Exercise
+import com.example.trainingapp.model.WeightUnit
+import java.time.LocalDate
 
+@RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AddExerciseView(
@@ -97,7 +103,7 @@ fun AddExerciseView(
                     OutlinedTextField(
                         value = viewModel.exerciseWeightState,
                         onValueChange = {
-                            viewModel.exerciseTitleState = it
+                            viewModel.exerciseWeightState = it
                         },
                         modifier = Modifier.padding(top = 16.dp),
                         label = {
@@ -105,7 +111,19 @@ fun AddExerciseView(
                         }
                     )
                     Button(
-                        onClick = {},
+                        onClick = {
+                            viewModel.addExercise(
+                                Exercise(
+                                    date = LocalDate.now().toString(),
+                                    name = viewModel.exerciseTitleState.trim(),
+                                    sets = viewModel.exerciseSetsState.toIntOrNull() ?: 0,
+                                    reps = viewModel.exerciseRepsState.toIntOrNull() ?: 0,
+                                    weight = viewModel.exerciseWeightState.toDoubleOrNull() ?: 0.0,
+                                    weightUnit = WeightUnit.LBS
+                                )
+                            )
+                            dialogOpen.value = false
+                        },
                         modifier = Modifier.padding(top = 16.dp),
                         colors = ButtonDefaults.buttonColors(
                             containerColor = Color(0xFF6200EE)

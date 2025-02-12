@@ -1,6 +1,8 @@
 package com.example.trainingapp.view
 
 import android.annotation.SuppressLint
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
@@ -34,6 +36,7 @@ import com.example.trainingapp.Navigation
 import com.example.trainingapp.Screen
 import com.example.trainingapp.screensInBottom
 
+@RequiresApi(Build.VERSION_CODES.O)
 @SuppressLint("ResourceAsColor")
 @Composable
 fun MainView() {
