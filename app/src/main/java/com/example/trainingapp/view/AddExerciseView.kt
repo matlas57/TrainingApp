@@ -123,6 +123,10 @@ fun AddExerciseView(
                                 )
                             )
                             dialogOpen.value = false
+                            viewModel.exerciseTitleState = ""
+                            viewModel.exerciseSetsState = ""
+                            viewModel.exerciseRepsState = ""
+                            viewModel.exerciseWeightState = ""
                         },
                         modifier = Modifier.padding(top = 16.dp),
                         colors = ButtonDefaults.buttonColors(
