@@ -28,14 +28,14 @@ class MainViewModel(
     var exerciseRepsState by mutableStateOf("")
     var exerciseWeightState by mutableStateOf("")
 
-//    lateinit var getAllExercises: Flow<List<Exercise>>
+    lateinit var getAllExercises: Flow<List<Exercise>>
     lateinit var getTodaysExercises: Flow<List<Exercise>>
 
-//    init {
-//        viewModelScope.launch {
-//            getAllExercises = exerciseRepository.getAllExercises()
-//        }
-//    }
+    init {
+        viewModelScope.launch {
+            getAllExercises = exerciseRepository.getAllExercises()
+        }
+    }
 
     init {
         viewModelScope.launch {

@@ -112,6 +112,8 @@ fun MainView() {
         backgroundColor = MaterialTheme.colorScheme.background
     ) {
         Navigation(
+            navController = controller,
+            viewModel = viewModel,
             pd = it
         )
         AddExerciseView(viewModel, dialogOpen)
